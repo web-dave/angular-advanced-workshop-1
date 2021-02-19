@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { BookApiService } from '../shared/book-api.service';
-import { emptyBook } from '../shared/book-empty';
+import { BookApiService } from '../book-api.service';
+import { emptyBook } from '../models';
 
 @Component({
   selector: 'ws-book-new',

@@ -5,6 +5,7 @@ export function emptyBook(): Book {
     id: '',
     title: '',
     subtitle: '',
+    cover: '',
     isbn: '',
     abstract: '',
     numPages: 0,

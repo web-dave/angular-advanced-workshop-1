@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { exhaustMap, switchMap, tap } from 'rxjs/operators';
-import { Book } from '../shared/book';
-import { BookApiService } from '../shared/book-api.service';
+import { BookApiService } from '../book-api.service';
+import { Book } from '../models';
 
 @Component({
   selector: 'ws-book-detail',
