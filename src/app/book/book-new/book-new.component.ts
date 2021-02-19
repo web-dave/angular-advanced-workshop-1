@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { BookDataService } from '../shared/book-data.service';
+import { BookApiService } from '../shared/book-data.service';
 import { emptyBook } from '../shared/book-empty';
 
 @Component({
@@ -13,7 +13,7 @@ export class BookNewComponent implements OnInit, OnDestroy {
   sink = new Subscription();
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private bookService: BookDataService) {}
+  constructor(private fb: FormBuilder, private bookService: BookApiService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -36,6 +36,6 @@ export class BookNewComponent implements OnInit, OnDestroy {
 
   create() {
     const book = { ...emptyBook(), ...this.form.value };
-    this.sink.add(this.bookService.createBook(book).subscribe());
+    this.sink.add(this.bookService.create(book).subscribe());
   }
 }

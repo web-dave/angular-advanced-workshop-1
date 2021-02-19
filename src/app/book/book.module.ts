@@ -14,7 +14,6 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookNewComponent } from './book-new/book-new.component';
 import { BookRoutingModule } from './book-routing.module';
 import { BookComponent } from './book.component';
-import { BookDataService } from './shared/book-data.service';
 
 @NgModule({
   imports: [
@@ -37,7 +36,6 @@ import { BookDataService } from './shared/book-data.service';
     BookDetailComponent,
     BookEditComponent,
     BookNewComponent
-  ],
-  providers: [BookDataService]
+  ]
 })
 export class BookModule {}

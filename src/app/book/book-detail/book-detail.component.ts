@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { exhaustMap, switchMap, tap } from 'rxjs/operators';
 import { Book } from '../shared/book';
-import { BookDataService } from '../shared/book-data.service';
+import { BookApiService } from '../shared/book-data.service';
 
 @Component({
   selector: 'ws-book-detail',
@@ -14,15 +14,27 @@ export class BookDetailComponent implements OnInit {
   public book$: Observable<Book>;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private bookService: BookDataService
+    private bookService: BookApiService
   ) {}
 
   ngOnInit() {
     this.book$ = this.route.params.pipe(
       switchMap((params: { isbn: string }) =>
-        this.bookService.getBookByIsbn(params.isbn)
+        this.bookService.getByIsbn(params.isbn)
       )
     );
+  }
+
+  remove() {
+    this.route.params
+      .pipe(
+        exhaustMap((params: { isbn: string }) =>
+          this.bookService.delete(params.isbn)
+        ),
+        tap(() => this.router.navigateByUrl('/'))
+      )
+      .subscribe();
   }
 }

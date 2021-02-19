@@ -3,25 +3,29 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from './book';
 
-@Injectable()
-export class BookDataService {
+@Injectable({ providedIn: 'root' })
+export class BookApiService {
   private endpoint = 'http://localhost:4730/books';
 
   constructor(private http: HttpClient) {}
 
-  getBooks(): Observable<Book[]> {
+  getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.endpoint}`);
   }
 
-  getBookByIsbn(isbn: string): Observable<Book> {
+  getByIsbn(isbn: string): Observable<Book> {
     return this.http.get<Book>(`${this.endpoint}/${isbn}`);
   }
 
-  createBook(book: Book): Observable<Book> {
+  create(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.endpoint}`, book);
   }
 
-  updateBook(isbn: string, vector: any): Observable<Book> {
-    return this.http.patch<Book>(`${this.endpoint}/${isbn}`, vector);
+  update(isbn: string, patch: Partial<Book>): Observable<Book> {
+    return this.http.patch<Book>(`${this.endpoint}/${isbn}`, patch);
+  }
+
+  delete(isbn: string): Observable<Book> {
+    return this.http.delete<Book>(`${this.endpoint}/${isbn}`);
   }
 }

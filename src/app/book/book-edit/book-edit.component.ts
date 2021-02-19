@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Book } from '../shared/book';
-import { BookDataService } from '../shared/book-data.service';
+import { BookApiService } from '../shared/book-data.service';
 
 @Component({
   selector: 'ws-book-edit',
@@ -16,7 +16,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookDataService
+    private bookService: BookApiService
   ) {}
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
       this.route.params
         .pipe(
           switchMap((params: { isbn: string }) =>
-            this.bookService.getBookByIsbn(params.isbn)
+            this.bookService.getByIsbn(params.isbn)
           )
         )
         .subscribe(book => (this.book = book))
@@ -37,7 +37,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
 
   save() {
     this.sink.add(
-      this.bookService.updateBook(this.book.isbn, this.book).subscribe()
+      this.bookService.update(this.book.isbn, this.book).subscribe()
     );
   }
 }
