@@ -4,12 +4,7 @@
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
   </mat-card-header>
-  <img
-    mat-card-image
-    src="/assets/covers/{{ book.isbn }}.jpg"
-    class="book-cover"
-    alt="book cover"
-  />
+  <img mat-card-image [src]="book.cover" class="book-cover" alt="book cover" />
   <mat-card-content>
     <p>
       {{ book.subtitle }}

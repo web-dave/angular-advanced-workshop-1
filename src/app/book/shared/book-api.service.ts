@@ -18,6 +18,7 @@ export class BookApiService {
   }
 
   create(book: Book): Observable<Book> {
+    book.cover ||= '/assets/covers/moby-dick.jpg';
     return this.http.post<Book>(`${this.endpoint}`, book);
   }
 

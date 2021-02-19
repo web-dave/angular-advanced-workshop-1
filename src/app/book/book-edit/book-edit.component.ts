@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Book } from '../shared/book';
-import { BookApiService } from '../shared/book-data.service';
+import { BookApiService } from '../shared/book-api.service';
 
 @Component({
   selector: 'ws-book-edit',

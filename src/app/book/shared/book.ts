@@ -3,6 +3,7 @@ export interface Book {
   title: string;
   subtitle: string;
   isbn: string;
+  cover: string;
   abstract: string;
   numPages: number;
   author: string;
