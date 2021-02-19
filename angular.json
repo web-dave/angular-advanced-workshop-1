@@ -98,27 +98,6 @@
           }
         }
       }
-    },
-    "workshop-e2e": {
-      "root": "e2e",
-      "sourceRoot": "",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "workshop:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["e2e/tsconfig.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
     }
   },
   "defaultProject": "workshop"
