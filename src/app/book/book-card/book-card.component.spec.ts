@@ -1,24 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BookCardComponent } from './book-card.component';
 
-describe('BookCardComponent', () => {
-  let component: BookCardComponent;
-  let fixture: ComponentFixture<BookCardComponent>;
+describe('<ws-book-card>', () => {
+  describe('unit', () => {
+    describe('When no content is passed', () => {
+      it('defaults to "n/a"', () => {
+        const na = 'n/a';
+        const component = new BookCardComponent();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BookCardComponent]
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BookCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+        expect(component.content.title).toBe(na);
+        expect(component.content.subtitle).toBe(na);
+        expect(component.content.author).toBe(na);
+      });
+    });
   });
 });
