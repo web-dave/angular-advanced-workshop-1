@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["prettier"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -11,9 +12,10 @@
       "extends": [
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
       ],
-      "plugins": ["eslint-plugin-react"],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -31,43 +33,8 @@
             "style": "camelCase"
           }
         ],
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
-        "@typescript-eslint/member-delimiter-style": [
-          "off",
-          {
-            "multiline": {
-              "delimiter": "none",
-              "requireLast": true
-            },
-            "singleline": {
-              "delimiter": "semi",
-              "requireLast": false
-            }
-          }
-        ],
-        "@typescript-eslint/semi": ["off", null],
-        "@typescript-eslint/type-annotation-spacing": "off",
-        "arrow-parens": ["off", "always"],
-        "brace-style": ["off", "off"],
-        "eol-last": "off",
-        "import/order": "off",
-        "linebreak-style": "off",
-        "max-len": "off",
-        "new-parens": "off",
-        "newline-per-chained-call": "off",
-        "no-extra-semi": "off",
-        "no-irregular-whitespace": "off",
-        "no-trailing-spaces": "off",
-        "react/jsx-curly-spacing": "off",
-        "react/jsx-equals-spacing": "off",
-        "react/jsx-wrap-multilines": "off",
-        "space-before-function-paren": "off",
-        "space-in-parens": ["off", "never"]
+        "prettier/prettier": "error",
+        "quotes": ["error", "single", { "avoidEscape": true }]
       }
     },
     {

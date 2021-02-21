@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BookApiService } from '../book-api.service';
-import { emptyBook } from '../models';
+import { BookNa } from '../models';
 
 @Component({
   selector: 'ws-book-new',
@@ -28,7 +28,7 @@ export class BookNewComponent implements OnDestroy {
   }
 
   create() {
-    const book = { ...emptyBook(), ...this.form.value };
+    const book = { ...new BookNa(), ...this.form.value };
     this.sink.add(
       this.bookService
         .create(book)

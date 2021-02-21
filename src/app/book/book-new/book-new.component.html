@@ -2,22 +2,22 @@
 <form [formGroup]="form" (ngSubmit)="create()" class="book-new__form">
   <mat-form-field>
     <input matInput formControlName="isbn" placeholder="ISBN" required />
-    <mat-error *ngIf="form.get('isbn').hasError('minlength')">
+    <mat-error *ngIf="form.get('isbn')?.hasError('minlength')">
       ISBN has to be at least 3 characters long.
     </mat-error>
-    <mat-error *ngIf="form.get('isbn').hasError('required')">
+    <mat-error *ngIf="form.get('isbn')?.hasError('required')">
       ISBN is required
     </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput formControlName="title" placeholder="Title" required />
-    <mat-error *ngIf="form.get('title').hasError('required')">
+    <mat-error *ngIf="form.get('title')?.hasError('required')">
       Title is required
     </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput formControlName="author" placeholder="Author" required />
-    <mat-error *ngIf="form.get('author').hasError('required')">
+    <mat-error *ngIf="form.get('author')?.hasError('required')">
       Author is required
     </mat-error>
   </mat-form-field>

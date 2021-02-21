@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
@@ -8,12 +8,10 @@ import { Book } from '../models';
   styleUrls: ['./book-list.component.scss'],
   templateUrl: 'book-list.component.html'
 })
-export class BookListComponent implements OnInit {
+export class BookListComponent {
   books$: Observable<Book[]>;
 
-  constructor(private bookData: BookApiService) {}
-
-  ngOnInit() {
+  constructor(private bookData: BookApiService) {
     this.books$ = this.bookData.getAll();
   }
 }

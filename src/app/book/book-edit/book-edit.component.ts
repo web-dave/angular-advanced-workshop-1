@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { BookApiService } from '../book-api.service';
-import { Book } from '../models';
+import { Book, BookNa } from '../models';
 
 @Component({
   selector: 'ws-book-edit',
@@ -12,7 +12,7 @@ import { Book } from '../models';
 })
 export class BookEditComponent implements OnInit, OnDestroy {
   sink = new Subscription();
-  book: Book;
+  book: Book = new BookNa();
 
   constructor(
     private route: ActivatedRoute,
@@ -22,11 +22,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sink.add(
       this.route.params
-        .pipe(
-          switchMap((params: { isbn: string }) =>
-            this.bookService.getByIsbn(params.isbn)
-          )
-        )
+        .pipe(switchMap(params => this.bookService.getByIsbn(params.isbn)))
         .subscribe(book => (this.book = book))
     );
   }
