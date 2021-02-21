@@ -4,7 +4,8 @@
   "newProjectRoot": "projects",
   "cli": {
     "packageManager": "npm",
-    "analytics": "bc75e2aa-c34c-415f-86d5-8371e4b27a94"
+    "analytics": "bc75e2aa-c34c-415f-86d5-8371e4b27a94",
+    "defaultCollection": "@ngrx/schematics"
   },
   "projects": {
     "workshop": {
@@ -26,7 +27,10 @@
             "main": "src/main.ts",
             "tsConfig": "./tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": ["src/assets", "src/favicon.ico"],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
+            ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
@@ -93,13 +97,19 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "assets": ["src/assets", "src/favicon.ico"]
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
