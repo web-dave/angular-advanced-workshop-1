@@ -1,12 +1,8 @@
-<mat-list>
-  <h3 mat-subheader>Books</h3>
-  <mat-list-item
-    [routerLink]="[book.isbn]"
+<h2 class="mat-h2">Books</h2>
+
+<div class="books-grid">
+  <ws-book-card
+    [content]="book"
     *ngFor="let book of books$ | async"
-    class="book-single"
-  >
-    <mat-icon mat-list-icon>book</mat-icon>
-    <h4 mat-line>{{ book.title }}</h4>
-    <p mat-line>{{ book.author }}</p>
-  </mat-list-item>
-</mat-list>
+  ></ws-book-card>
+</div>
