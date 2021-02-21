@@ -13,14 +13,8 @@ import { Book } from '../models';
 export class BookDetailComponent {
   public book$: Observable<Book>;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private bookService: BookApiService
-  ) {
-    this.book$ = this.route.params.pipe(
-      switchMap(params => this.bookService.getByIsbn(params.isbn))
-    );
+  constructor(private router: Router, private route: ActivatedRoute, private bookService: BookApiService) {
+    this.book$ = this.route.params.pipe(switchMap(params => this.bookService.getByIsbn(params.isbn)));
   }
 
   remove() {

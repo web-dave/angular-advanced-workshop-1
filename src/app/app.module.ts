@@ -15,9 +15,7 @@ import { CommonComponentsModule } from './common-components/common-components.mo
     HttpClientModule,
     BrowserAnimationsModule,
     HammerModule,
-
     CommonComponentsModule,
-
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

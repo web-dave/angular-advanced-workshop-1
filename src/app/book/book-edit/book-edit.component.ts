@@ -14,10 +14,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
   sink = new Subscription();
   book: Book = new BookNa();
 
-  constructor(
-    private route: ActivatedRoute,
-    private bookService: BookApiService
-  ) {}
+  constructor(private route: ActivatedRoute, private bookService: BookApiService) {}
 
   ngOnInit() {
     this.sink.add(
@@ -32,8 +29,6 @@ export class BookEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.sink.add(
-      this.bookService.update(this.book.isbn, this.book).subscribe()
-    );
+    this.sink.add(this.bookService.update(this.book.isbn, this.book).subscribe());
   }
 }

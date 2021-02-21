@@ -15,11 +15,7 @@ export class BookNewComponent implements OnDestroy {
   sink = new Subscription();
   form: FormGroup;
 
-  constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private bookService: BookApiService
-  ) {
+  constructor(private router: Router, private fb: FormBuilder, private bookService: BookApiService) {
     this.form = this.buildForm();
   }
 

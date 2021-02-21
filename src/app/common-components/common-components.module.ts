@@ -14,7 +14,6 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
   imports: [
     CommonModule,
     RouterModule,
-
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
