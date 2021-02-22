@@ -1,1 +1,1 @@
-export const bookFeatureName = 'books';
+export const bookFeatureName = 'book';
