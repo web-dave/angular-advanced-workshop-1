@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BookCollectionSlice, bookFeatureName } from '@store/book';
+import { bookCollection } from '@store/book';
 import { Observable } from 'rxjs';
 import { Book } from '../models';
 
@@ -12,9 +12,7 @@ import { Book } from '../models';
 export class BookListComponent {
   books$: Observable<ReadonlyArray<Book>>;
 
-  // TODO: The typing of Store<T> is temporary and wont be needed after we
-  //       have introduced selectors.
-  constructor(private store: Store<{ [bookFeatureName]: { bookCollection: BookCollectionSlice } }>) {
-    this.books$ = this.store.select(state => state[bookFeatureName].bookCollection.entities);
+  constructor(private store: Store) {
+    this.books$ = this.store.select(bookCollection);
   }
 }
