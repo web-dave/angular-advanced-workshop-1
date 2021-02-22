@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
-import { bookCollectionReducer, bookFeatureName } from '@store/book';
+import { bookFeatureName, bookReducers } from '@store/book';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
@@ -33,7 +33,7 @@ import { BookComponent } from './book.component';
     MatInputModule,
     MatListModule,
 
-    StoreModule.forFeature(bookFeatureName, { bookCollection: bookCollectionReducer })
+    StoreModule.forFeature(bookFeatureName, bookReducers)
   ],
   declarations: [
     BookComponent,
