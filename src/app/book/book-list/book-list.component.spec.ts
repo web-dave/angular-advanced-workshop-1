@@ -6,6 +6,7 @@ import { instance, mock, when } from 'ts-mockito';
 import { BookApiService } from '../book-api.service';
 import { BookNa } from '../models';
 import { BookListComponent } from './book-list.component';
+
 describe('<ws-book-list>', () => {
   let fixture: ComponentFixture<BookListComponent>;
   let bookApiMock: BookApiService;
