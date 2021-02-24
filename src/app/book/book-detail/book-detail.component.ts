@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { exhaustMap, switchMap, tap } from 'rxjs/operators';
+import { exhaustMap, filter, switchMap, tap } from 'rxjs/operators';
 import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
+import { bookByIsbn } from '../store';
 
 @Component({
   selector: 'ws-book-detail',
@@ -13,8 +15,16 @@ import { Book } from '../models';
 export class BookDetailComponent {
   public book$: Observable<Book>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private bookService: BookApiService) {
-    this.book$ = this.route.params.pipe(switchMap(params => this.bookService.getByIsbn(params.isbn)));
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store,
+    private bookService: BookApiService
+  ) {
+    this.book$ = this.route.params.pipe(
+      switchMap(params => this.store.select(bookByIsbn(params.isbn))),
+      filter((book): book is Book => !!book)
+    );
   }
 
   remove() {
