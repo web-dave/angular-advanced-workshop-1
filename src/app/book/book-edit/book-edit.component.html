@@ -2,42 +2,19 @@
 <ng-container *ngIf="book">
   <form #form="ngForm" (ngSubmit)="save()" class="book-edit__form">
     <mat-form-field>
-      <input
-        matInput
-        [(ngModel)]="book.isbn"
-        name="isbn"
-        placeholder="ISBN"
-        readonly
-      />
+      <input matInput [(ngModel)]="book.isbn" name="isbn" placeholder="ISBN" readonly />
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        [(ngModel)]="book.title"
-        name="title"
-        placeholder="Title"
-        required
-      />
+      <input matInput [(ngModel)]="book.title" name="title" placeholder="Title" required />
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        [(ngModel)]="book.author"
-        name="author"
-        placeholder="Author"
-        #author
-        required
-      />
+      <input matInput [(ngModel)]="book.author" name="author" placeholder="Author" #author="ngModel" required />
       <mat-error *ngIf="author.errors">Author is required</mat-error>
     </mat-form-field>
 
     <div class="book-actions">
-      <button mat-button [routerLink]="['/books', book.isbn]">
-        Cancel
-      </button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">
-        Save
-      </button>
+      <button mat-button [routerLink]="['/books', book.isbn]">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Save</button>
     </div>
   </form>
 </ng-container>

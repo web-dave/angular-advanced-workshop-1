@@ -4,7 +4,12 @@
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="book.cover" class="book-cover" alt="book cover" />
+  <img
+    mat-card-image
+    [src]="book.cover || 'https://via.placeholder.com/468x800?text=No%20cover%20available'"
+    class="book-cover"
+    alt="book cover"
+  />
   <mat-card-content>
     <p>
       {{ book.subtitle }}
@@ -12,8 +17,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="remove()" color="error">REMOVE</button>
-    <button mat-raised-button [routerLink]="['edit']" color="primary">
-      EDIT
-    </button>
+    <button mat-raised-button [routerLink]="['edit']" color="primary">EDIT</button>
   </mat-card-actions>
 </mat-card>
