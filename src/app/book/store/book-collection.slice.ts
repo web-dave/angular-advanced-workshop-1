@@ -1,5 +1,4 @@
+import { EntityState } from '@ngrx/entity';
 import { Book } from '../models';
 
-export interface BookCollectionSlice {
-  entities: ReadonlyArray<Book>;
-}
+export type BookCollectionSlice = EntityState<Book>;
