@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map } from 'rxjs/operators';
+import { exhaustMap, map, switchMap } from 'rxjs/operators';
 import { BookApiService } from '../book-api.service';
-import { loadBooksComplete, loadBooksStart } from './book-collection.actions';
+import { createBookComplete, createBookStart, loadBooksComplete, loadBooksStart } from './book-collection.actions';
 
 @Injectable()
 export class BookCollectionEffects {
@@ -14,5 +15,22 @@ export class BookCollectionEffects {
     )
   );
 
-  constructor(private actions$: Actions, private bookApi: BookApiService) {}
+  create = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createBookStart),
+      exhaustMap(({ book }) => this.bookApi.create(book)),
+      map(bookCreated => createBookComplete({ book: bookCreated }))
+    )
+  );
+
+  navigateToStart = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(createBookComplete),
+        switchMap(() => this.router.navigateByUrl('/'))
+      ),
+    { dispatch: false }
+  );
+
+  constructor(private router: Router, private actions$: Actions, private bookApi: BookApiService) {}
 }

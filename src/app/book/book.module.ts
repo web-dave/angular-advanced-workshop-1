@@ -33,6 +33,7 @@ import { BookComponent } from './book.component';
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatListModule,
 
     StoreModule.forFeature(bookFeatureName, bookReducers),
     EffectsModule.forFeature([BookCollectionEffects])
