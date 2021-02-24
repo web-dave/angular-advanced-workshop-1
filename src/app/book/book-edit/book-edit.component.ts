@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { bookByIsbn, updateBookStart } from '@store/book';
 import { Subscription } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Book, BookNa } from '../models';
 
 @Component({
@@ -15,15 +14,13 @@ export class BookEditComponent implements OnInit, OnDestroy {
   sink = new Subscription();
   book: Book = new BookNa();
 
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.sink.add(
-      this.route.params
-        .pipe(
-          switchMap(params => this.store.select(bookByIsbn(params.isbn))),
-          filter((book): book is Book => !!book)
-        )
+      this.store
+        .select(bookByIsbn)
+        .pipe(filter((book): book is Book => !!book))
         .subscribe(book => (this.book = { ...book }))
     );
   }

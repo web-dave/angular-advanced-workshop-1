@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { bookByIsbn, deleteBookStart } from '@store/book';
 import { Observable } from 'rxjs';
-import { filter, switchMap, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Book } from '../models';
 
 @Component({
@@ -14,14 +13,11 @@ import { Book } from '../models';
 export class BookDetailComponent {
   public book$: Observable<Book>;
 
-  constructor(private route: ActivatedRoute, private store: Store) {
-    this.book$ = this.route.params.pipe(
-      switchMap(params => this.store.select(bookByIsbn(params.isbn))),
-      filter((book): book is Book => !!book)
-    );
+  constructor(private store: Store) {
+    this.book$ = this.store.select(bookByIsbn).pipe(filter((book): book is Book => !!book));
   }
 
   remove() {
-    this.route.params.pipe(tap(params => this.store.dispatch(deleteBookStart({ bookIsbn: params.isbn })))).subscribe();
+    this.store.dispatch(deleteBookStart());
   }
 }
