@@ -6,7 +6,7 @@
   </mat-card-header>
   <img
     class="book-cover-thumb"
-    [src]="content.cover"
+    [src]="content.cover || 'https://via.placeholder.com/468x800?text=No%20cover%20available'"
     [attr.alt]="content.title"
   />
   <mat-card-content>
