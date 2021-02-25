@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { BookApiService } from './book-api.service';
 import { BookNa } from './models';
@@ -9,7 +10,7 @@ describe('☁️ BookApi', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatSnackBarModule],
       providers: [BookApiService]
     });
 
