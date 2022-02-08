@@ -10,6 +10,7 @@
     "e2e": "ng e2e",
     "format": "prettier --write \"**/*.{js,json,css,scss,md,ts,html}\"",
     "dmc": "bookmonkey-api",
+    "api": "bookmonkey-api",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
