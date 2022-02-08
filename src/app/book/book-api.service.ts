@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Book } from './models';
 
 @Injectable({ providedIn: 'root' })
@@ -21,6 +21,13 @@ export class BookApiService {
             : throwError(new Error('Sorry, we have connectivity issues.'))
         )
       );
+  }
+
+  isNameAvailable(name: string): Observable<boolean> {
+    return this.getAll().pipe(
+      map(books => books.filter(book => book.title.toLowerCase() === name.toLowerCase())),
+      map(results => results.length >= 1)
+    );
   }
 
   getByIsbn(isbn: string): Observable<Book> {

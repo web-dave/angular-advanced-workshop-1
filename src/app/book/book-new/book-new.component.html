@@ -8,6 +8,7 @@
   <mat-form-field>
     <input matInput formControlName="title" placeholder="Title" required />
     <mat-error *ngIf="form.get('title')?.hasError('required')"> Title is required </mat-error>
+    <mat-error *ngIf="form.get('title')?.hasError('name')"> {{ form.get('title')?.errors?.name }} </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput formControlName="author" placeholder="Author" required />
@@ -16,6 +17,9 @@
 
   <mat-form-field>
     <input matInput formControlName="cover" placeholder="Cover URL" />
+    <mat-error *ngIf="form.get('cover')?.hasError('foo')">
+      {{ form.get('cover')?.errors?.foo }}
+    </mat-error>
   </mat-form-field>
 
   <div class="form-actions">

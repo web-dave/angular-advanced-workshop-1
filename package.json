@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write \"**/*.{js,json,css,scss,md,ts,html}\""
+    "format": "prettier --write \"**/*.{js,json,css,scss,md,ts,html}\"",
+    "dmc": "bookmonkey-api"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "@ngrx/router-store": "13.0.2",
     "@ngrx/store": "13.0.2",
     "@ngrx/store-devtools": "13.0.2",
+    "bookmonkey-api": "^3.0.9",
     "core-js": "3.6.5",
     "rxjs": "7.5.1",
     "tslib": "2.3.1",
