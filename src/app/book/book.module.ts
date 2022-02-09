@@ -33,7 +33,7 @@ import { bookCollectionReducer } from './store/book-collection.reducer';
     MatIconModule,
     MatInputModule,
     MatListModule,
-    StoreModule.forFeature(bookFeatureName, bookCollectionReducer)
+    StoreModule.forFeature(bookFeatureName, { bookCollection: bookCollectionReducer })
   ],
   declarations: [
     BookComponent,
