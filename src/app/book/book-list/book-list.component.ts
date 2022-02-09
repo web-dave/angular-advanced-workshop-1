@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
+import { bookListSelector } from '../store/book-collection.selectors';
 import { ApplicationStore, BookCollectionSlice, BookFeature } from '../store/book-collection.slice';
 import { bookFeatureName } from '../store/book.feature';
 
@@ -15,6 +16,6 @@ export class BookListComponent {
   books$: Observable<ReadonlyArray<Book>>;
 
   constructor(private store: Store<ApplicationStore>) {
-    this.books$ = this.store.select(state => state[bookFeatureName].bookCollection.entities);
+    this.books$ = this.store.select(bookListSelector);
   }
 }
