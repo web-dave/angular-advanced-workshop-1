@@ -18,6 +18,8 @@ import { BookCardComponent } from './book-card/book-card.component';
 import { StoreModule } from '@ngrx/store';
 import { bookFeatureName, bookReducers } from './store/book.feature';
 import { bookCollectionReducer } from './store/book-collection.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookCollectionEffects } from './store/book-collection.effects';
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import { bookCollectionReducer } from './store/book-collection.reducer';
     MatIconModule,
     MatInputModule,
     MatListModule,
-    StoreModule.forFeature(bookFeatureName, bookReducers)
+    StoreModule.forFeature(bookFeatureName, bookReducers),
+    EffectsModule.forFeature([BookCollectionEffects])
   ],
   declarations: [
     BookComponent,

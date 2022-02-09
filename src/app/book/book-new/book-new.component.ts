@@ -13,8 +13,7 @@ import { createBookStart } from '../store/book-collection.actions';
   styleUrls: ['./book-new.component.scss'],
   templateUrl: './book-new.component.html'
 })
-export class BookNewComponent implements OnDestroy {
-  sink = new Subscription();
+export class BookNewComponent {
   form: FormGroup;
 
   constructor(
@@ -25,19 +24,8 @@ export class BookNewComponent implements OnDestroy {
   ) {
     this.form = this.buildForm();
   }
-
-  ngOnDestroy() {
-    this.sink.unsubscribe();
-  }
-
   create() {
     const book = { ...new BookNa(), ...this.form.value };
-    this.sink.add(
-      this.bookService
-        .create(book)
-        .pipe(tap(() => this.router.navigateByUrl('/')))
-        .subscribe()
-    );
     this.store.dispatch(createBookStart({ book }));
   }
 
