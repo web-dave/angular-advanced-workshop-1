@@ -34,7 +34,7 @@ describe('BookCardComponent', () => {
         isbn: 'n/a',
         title: 'n/a',
         subtitle: 'n/a',
-        numPages: 7,
+        numPages: 0,
         publisher: { name: 'n/a', url: 'n/a' }
       });
     });
@@ -42,6 +42,7 @@ describe('BookCardComponent', () => {
     it('should show "n/a" in Template', () => {
       expect(fixture.debugElement.nativeElement.innerText).toContain('n/a');
     });
+
     it('should show "DAS BUCH" in Template', () => {
       component.content.title = 'DAS BUCH';
       fixture.detectChanges();
