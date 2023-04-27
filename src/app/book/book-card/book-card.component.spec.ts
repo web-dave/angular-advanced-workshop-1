@@ -21,4 +21,31 @@ describe('BookCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('When no content is passed', () => {
+    it('defaults to "n/a"', () => {
+      // expect(component.content.isbn).toBe('n/a');
+      console.log(component.content);
+
+      expect(component.content).toEqual({
+        abstract: 'n/a',
+        author: 'n/a',
+        cover: 'n/a',
+        isbn: 'n/a',
+        title: 'n/a',
+        subtitle: 'n/a',
+        numPages: 7,
+        publisher: { name: 'n/a', url: 'n/a' }
+      });
+    });
+
+    it('should show "n/a" in Template', () => {
+      expect(fixture.debugElement.nativeElement.innerText).toContain('n/a');
+    });
+    it('should show "DAS BUCH" in Template', () => {
+      component.content.title = 'DAS BUCH';
+      fixture.detectChanges();
+      expect(fixture.debugElement.nativeElement.innerText).toContain('DAS BUCH');
+    });
+  });
 });

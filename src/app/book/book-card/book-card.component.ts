@@ -8,4 +8,8 @@ import { Book, bookNa } from '../models';
 })
 export class BookCardComponent {
   @Input() content: Book = bookNa();
+  foo = 'Bar';
+  baz() {
+    return 'BASS';
+  }
 }
