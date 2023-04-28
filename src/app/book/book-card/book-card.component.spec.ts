@@ -4,14 +4,6 @@ import { Book, bookNa } from '../models';
 
 import { BookCardComponent } from './book-card.component';
 
-@Component({
-  selector: 'sand-box',
-  template: `<ws-book-card [content]="data"></ws-book-card>`
-})
-class SandBox {
-  data: Book = bookNa();
-}
-
 describe('BookCardComponent', () => {
   let component: BookCardComponent;
   let fixture: ComponentFixture<BookCardComponent>;
@@ -51,7 +43,16 @@ describe('BookCardComponent', () => {
   });
 });
 
-describe('BookCardComponentSandBox', () => {
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'sand-box',
+  template: `<ws-book-card [content]="data"></ws-book-card>`
+})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+class SandBox {
+  data: Book = bookNa();
+}
+describe('BookCardComponent in a SandBox', () => {
   let component: SandBox;
   let fixture: ComponentFixture<SandBox>;
 
