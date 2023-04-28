@@ -80,3 +80,35 @@ describe('BookCardComponent in a SandBox', () => {
     expect(fixture.debugElement.nativeElement.innerText).toContain('DAS BUCH');
   });
 });
+
+//==================================================================================
+
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+
+describe('Spectator BookCardComponent Test', () => {
+  let spectator: Spectator<BookCardComponent>;
+  let createComponent = createComponentFactory(BookCardComponent);
+  beforeEach(async () => {
+    spectator = createComponent();
+  });
+
+  it('should show "n/a" in Template', () => {
+    expect(spectator.query('mat-card-title')?.innerHTML).toBe('n/a');
+  });
+
+  it('should show "DAS BUCH" in Template', () => {
+    const book: Book = {
+      abstract: 'n/a',
+      author: 'n/a',
+      cover: 'n/a',
+      isbn: 'n/a',
+      title: 'DAS BUCH',
+      subtitle: 'n/a',
+      numPages: 0,
+      publisher: { name: 'n/a', url: 'n/a' }
+    };
+
+    spectator.setInput('content', book);
+    expect(spectator.query('mat-card-title')?.innerHTML).toBe('DAS BUCH');
+  });
+});

@@ -42,6 +42,7 @@
     "@angular/compiler-cli": "13.1.1",
     "@angular/language-service": "13.1.1",
     "@cypress/schematic": "^2.2.0",
+    "@ngneat/spectator": "^10.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "2.0.8",
     "@types/node": "14.6.3",
