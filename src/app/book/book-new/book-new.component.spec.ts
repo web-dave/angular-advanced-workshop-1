@@ -56,7 +56,7 @@ describe('BookNewComponent', () => {
 // =====================================================================
 
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-fdescribe('BookNewComponent with SPectator', () => {
+describe('BookNewComponent with SPectator', () => {
   let spectator: Spectator<BookNewComponent>;
   let createComponent = createComponentFactory({
     component: BookNewComponent,

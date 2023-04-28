@@ -34,3 +34,31 @@ describe('BookApiService', () => {
     // Assert getAll() provides the error Sorry, we could not load any books if the API responds with error code 500.
   });
 });
+
+// =========================================================
+
+import { createHttpFactory, HttpMethod, SpectatorHttp } from '@ngneat/spectator';
+
+describe('BookApiService mit Spectator', () => {
+  let spectator: SpectatorHttp<BookApiService>;
+  let createHttp = createHttpFactory(BookApiService);
+  const mockList = [bookNa()];
+
+  beforeEach(() => {
+    spectator = createHttp();
+  });
+
+  describe('getAll', () => {
+    // Assert getAll() provides a list of Books if everything works
+    it('should provide a list of Books if everything works', done => {
+      spectator.service.getAll().subscribe(data => {
+        expect(data).toBe(mockList);
+        done();
+      });
+
+      spectator.expectOne('http://localhost:4730/books', HttpMethod.GET).flush(mockList);
+    });
+    // Assert getAll() provides the error Sorry, we have connectivity issues if the Network-Connection is lost
+    // Assert getAll() provides the error Sorry, we could not load any books if the API responds with error code 500.
+  });
+});
