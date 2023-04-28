@@ -53,3 +53,36 @@ describe('BookNewComponent', () => {
     });
   });
 });
+// =====================================================================
+
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+fdescribe('BookNewComponent with SPectator', () => {
+  let spectator: Spectator<BookNewComponent>;
+  let createComponent = createComponentFactory({
+    component: BookNewComponent,
+    imports: [
+      NoopAnimationsModule,
+      ReactiveFormsModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatButtonModule,
+      HttpClientTestingModule,
+      RouterTestingModule
+    ]
+  });
+  beforeEach(async () => {
+    spectator = createComponent();
+  });
+
+  describe('When an ISBN has less than 3 characters', () => {
+    it('displays an error message', () => {
+      expect(spectator.queryAll('mat-error').length).toBe(0);
+      spectator.typeInElement('12', '#isbn');
+      spectator.blur('#isbn');
+
+      expect(spectator.queryAll('mat-error').length).toBe(1);
+
+      expect(spectator.queryAll('mat-error')).toContainText('ISBN has to be at least 3 characters long.');
+    });
+  });
+});

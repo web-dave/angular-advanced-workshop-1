@@ -1,7 +1,7 @@
 <h2 class="mat-h2">Add New Book</h2>
 <form [formGroup]="form" (ngSubmit)="create()" class="book-new__form">
   <mat-form-field data-test-id="isbn">
-    <input matInput formControlName="isbn" placeholder="ISBN" required />
+    <input matInput formControlName="isbn" id="isbn" placeholder="ISBN" required />
     <mat-error *ngIf="form.get('isbn')?.hasError('minlength')"> ISBN has to be at least 3 characters long. </mat-error>
     <mat-error *ngIf="form.get('isbn')?.hasError('required')"> ISBN is required </mat-error>
   </mat-form-field>
