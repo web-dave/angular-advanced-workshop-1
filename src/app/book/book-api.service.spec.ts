@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { BookApiService } from './book-api.service';
 import { bookNa } from './models';
 
-fdescribe('BookApiService', () => {
+describe('BookApiService', () => {
   let backend: HttpTestingController;
   let service: BookApiService;
   const mockList = [bookNa()];
