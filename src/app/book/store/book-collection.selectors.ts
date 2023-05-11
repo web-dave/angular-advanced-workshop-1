@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { BookCollectionSlice, bookFeatureName, BookState } from './book.feature';
+
+import { BookState } from './book-collection.slice';
 
 export const selectBookFeature = createFeatureSelector<BookState>('book');
 

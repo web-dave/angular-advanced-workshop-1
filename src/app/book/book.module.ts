@@ -16,7 +16,8 @@ import { BookRoutingModule } from './book-routing.module';
 import { BookComponent } from './book.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { StoreModule } from '@ngrx/store';
-import { bookFeatureName, bookReducers } from './store/book.feature';
+import { bookFeatureName } from './store/book.feature';
+import { bookReducers } from './store/book-collection.reducer';
 
 @NgModule({
   imports: [

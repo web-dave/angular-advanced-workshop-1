@@ -1,7 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
+import { ActionReducerMap, createReducer, on } from '@ngrx/store';
 import { bookNa } from '../models';
-import { createBookStart } from './book.feature';
-import { BookCollectionSlice } from './book.feature';
+import { BookCollectionSlice, BookState } from './book-collection.slice';
+import { createBookStart } from './book-collection.actions';
 
 const initialState: BookCollectionSlice = {
   entities: [{ ...bookNa(), isbn: '999999999', cover: '' }]
@@ -16,3 +16,7 @@ export const bookCollectionReducer = createReducer(
     })
   )
 );
+
+export const bookReducers: ActionReducerMap<BookState> = {
+  bookstate: bookCollectionReducer
+};
