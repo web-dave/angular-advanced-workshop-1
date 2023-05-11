@@ -20,7 +20,7 @@ import { environment } from '../environments/environment';
     HammerModule,
     CommonComponentsModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ foo: () => [] }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   bootstrap: [AppComponent]
