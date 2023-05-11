@@ -11,10 +11,10 @@ import { selectAllBooks } from '../store/book.feature';
   templateUrl: 'book-list.component.html'
 })
 export class BookListComponent {
-  books$: Observable<ReadonlyArray<Book>>;
+  books$!: Observable<ReadonlyArray<Book>>;
 
   constructor(private store: Store) {
     // this.books$ = this.bookData.getAll();
-    this.books$ = this.store.select(selectAllBooks);
+    // this.books$ = this.store.select(selectAllBooks);
   }
 }

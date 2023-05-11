@@ -4,7 +4,7 @@ import { createBookStart } from './book.feature';
 import { BookCollectionSlice } from './book.feature';
 
 const initialState: BookCollectionSlice = {
-  entities: [bookNa()]
+  entities: [{ ...bookNa(), isbn: '999999999', cover: '' }]
 };
 export const bookCollectionReducer = createReducer(
   initialState,
