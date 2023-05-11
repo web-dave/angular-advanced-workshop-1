@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
-import { selectAllBooks } from '../store/book.feature';
+import { selectAllBooks } from '../store/book-collection.selectors';
 
 @Component({
   selector: 'ws-book-list',
