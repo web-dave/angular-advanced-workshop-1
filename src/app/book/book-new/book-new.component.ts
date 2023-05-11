@@ -1,10 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BookApiService } from '../book-api.service';
-import { bookNa } from '../models';
+import { Book, bookNa } from '../models';
+import { createBookStart } from '../store/book-collection.actions';
 
 @Component({
   selector: 'ws-book-new',
@@ -15,7 +17,12 @@ export class BookNewComponent implements OnDestroy {
   sink = new Subscription();
   form: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private bookService: BookApiService) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private bookService: BookApiService,
+    private store: Store
+  ) {
     this.form = this.buildForm();
   }
 
@@ -25,6 +32,7 @@ export class BookNewComponent implements OnDestroy {
 
   create() {
     const book = { ...bookNa(), ...this.form.value };
+    this.store.dispatch(createBookStart({ book }));
     this.sink.add(
       this.bookService
         .create(book)
