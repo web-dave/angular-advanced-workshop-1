@@ -1,10 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { BookState } from './book-collection.slice';
+import { bookFeatureName, bookAdapter } from './book.feature';
 
-export const selectBookFeature = createFeatureSelector<BookState>('book');
+export const selectBookCollectionSlice = createFeatureSelector<BookState>(bookFeatureName);
+export const selectBookState = createSelector(selectBookCollectionSlice, state => state.bookstate);
+const { selectAll, selectEntities } = bookAdapter.getSelectors();
+export const selectAllBooks = createSelector(selectBookState, selectAll);
 
-export const selectAllBooks = createSelector(selectBookFeature, state => state.bookstate.entities);
-
-export const selectBookByIsbn = (isbn: string) =>
-  createSelector(selectAllBooks, books => books.find(b => b.isbn === isbn));
+export const selectBookByIsbn = (isbn: string) => createSelector(selectBookState, state => selectEntities(state)[isbn]);

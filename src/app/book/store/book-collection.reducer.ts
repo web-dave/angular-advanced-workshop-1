@@ -9,24 +9,17 @@ import {
   updateBookComplete
 } from './book-collection.actions';
 
-const initialState: BookCollectionSlice = {
-  entities: [{ ...bookNa(), isbn: '999999999', cover: '' }]
-};
+import { bookAdapter } from './book.feature';
+
+const initialState: BookCollectionSlice = bookAdapter.getInitialState();
+const { setAll, updateOne, removeOne, addOne } = bookAdapter;
+
 export const bookCollectionReducer = createReducer(
   initialState,
-  on(createBookComplete, (state, action) => ({
-    ...state,
-    entities: [...state.entities, action.book]
-  })),
-  on(loadBookComplete, (state, { books }) => ({ ...state, entities: books })),
-  on(deleteBookComplete, (state, { isbn }) => ({
-    ...state,
-    entities: [...state.entities.filter(book => book.isbn != isbn)]
-  })),
-  on(updateBookComplete, (state, { update }) => ({
-    ...state,
-    entities: state.entities.map(book => (book.isbn === update.isbn ? update : book))
-  }))
+  on(createBookComplete, (state, { book }) => addOne(book, state)),
+  on(deleteBookComplete, (state, { isbn }) => removeOne(isbn, state)),
+  on(loadBookComplete, (state, { books }) => setAll(books, state)),
+  on(updateBookComplete, (state, { update }) => updateOne({ id: update.isbn, changes: update }, state))
 );
 
 export const bookReducers: ActionReducerMap<BookState> = {
