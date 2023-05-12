@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { Book, bookNa } from '../models';
 import { updateBookStart } from '../store/book-collection.actions';
-import { selectBookByIsbn } from '../store/book-collection.selectors';
+import { selectBookByIsbn, selectBookByKey } from '../store/book-collection.selectors';
 
 @Component({
   selector: 'ws-book-edit',
@@ -22,7 +22,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     this.sink.add(
       this.route.params
         .pipe(
-          switchMap(params => this.store.select(selectBookByIsbn(params.isbn))),
+          switchMap(() => this.store.select(selectBookByIsbn)),
           filter((book): book is Book => !!book)
         )
         .subscribe(book => (this.book = book))
