@@ -3,7 +3,28 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BookListComponent } from './book-list.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { bookNa } from '../models';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+
+const mockbooks = [
+  {
+    ...bookNa(),
+    title: 'Das Buch 1'
+  },
+  {
+    ...bookNa(),
+    title: 'Das Buch 2'
+  },
+  {
+    ...bookNa(),
+    title: 'Das Buch 3'
+  }
+];
+
+class MockStore {
+  select(selector: any): Observable<any> {
+    return of(mockbooks);
+  }
+}
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -11,33 +32,25 @@ describe('BookListComponent', () => {
   let template: HTMLElement;
   let store: Store;
   let mySpy;
-  const mockbooks = [
-    {
-      ...bookNa(),
-      title: 'Das Buch 1'
-    },
-    {
-      ...bookNa(),
-      title: 'Das Buch 2'
-    },
-    {
-      ...bookNa(),
-      title: 'Das Buch 3'
-    }
-  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BookListComponent],
-      imports: [StoreModule.forRoot({})],
+      //   imports: [StoreModule.forRoot({})],
+      providers: [
+        {
+          provide: Store,
+          useClass: MockStore
+        }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    store = TestBed.inject(Store);
+    // store = TestBed.inject(Store);
 
-    mySpy = spyOn(store, 'select').and.returnValue(of(mockbooks));
+    // mySpy = spyOn(store, 'select').and.returnValue(of(mockbooks));
     fixture = TestBed.createComponent(BookListComponent);
     component = fixture.componentInstance;
     template = fixture.debugElement.nativeElement;
