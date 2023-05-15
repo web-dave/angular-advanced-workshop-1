@@ -1,11 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { bookNa } from '../models';
 
 import { BookCardComponent } from './book-card.component';
 
 describe('BookCardComponent', () => {
   let component: BookCardComponent;
   let fixture: ComponentFixture<BookCardComponent>;
+  let template: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,11 +19,12 @@ describe('BookCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BookCardComponent);
     component = fixture.componentInstance;
-    // fixture.debugElement.nativeElement
+    template = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    // expect(component).toBe('huhu');
     expect(component).toBeTruthy();
   });
 
@@ -30,5 +33,18 @@ describe('BookCardComponent', () => {
     const myComp = new BookCardComponent();
     const book = myComp.content;
     expect(book.title).toBe(na);
+  });
+
+  it('should show title in Template', () => {
+    const book = {
+      ...bookNa(),
+      title: 'Das Buch!'
+    };
+    // const titleElem = template.querySelector('mat-card-title');
+    const titleElem = template.querySelector('[data-testid="book-title"]');
+    expect(titleElem?.innerHTML).toBe('n/a');
+    component.content = book;
+    fixture.detectChanges();
+    expect(titleElem?.innerHTML).toBe('Das Buch!');
   });
 });
