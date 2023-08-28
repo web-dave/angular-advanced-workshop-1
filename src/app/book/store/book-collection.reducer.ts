@@ -6,7 +6,7 @@ const initialState: BookCollectionSlice = {
   entities: []
 };
 
-export const bookReducer = createReducer(
+export const bookCollectionReducer = createReducer(
   initialState,
   on(
     createBookStart,

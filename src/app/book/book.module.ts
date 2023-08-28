@@ -17,7 +17,6 @@ import { BookComponent } from './book.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { StoreModule } from '@ngrx/store';
 import { bookFeatureName, bookReducers } from './store/book.feature';
-import { bookReducer } from './store/book-collection.reducer';
 
 @NgModule({
   imports: [
