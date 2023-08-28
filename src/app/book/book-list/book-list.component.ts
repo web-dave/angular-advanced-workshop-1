@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
 import { Store } from '@ngrx/store';
-import { BookCollectionSlice } from '../store/book-collection.slice';
-import { bookFeatureName } from '../store/book.feature';
+import { selectBooks } from '../store/book-collection.selectors';
 
 @Component({
   selector: 'ws-book-list',
@@ -15,7 +14,6 @@ export class BookListComponent {
   books$: Observable<ReadonlyArray<Book>>;
   // <{ [bookFeatureName]: BookCollectionSlice }>
   constructor(private bookData: BookApiService, private store: Store) {
-    // eslint-disable-next-line ngrx/prefer-selector-in-select
-    this.books$ = this.store.select((state: any) => state[bookFeatureName].entities);
+    this.books$ = this.store.select(selectBooks);
   }
 }
