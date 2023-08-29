@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { bookNa } from '../models';
 import { Store } from '@ngrx/store';
@@ -15,7 +14,7 @@ export class BookNewComponent implements OnDestroy {
   sink = new Subscription();
   form: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.form = this.buildForm();
   }
 

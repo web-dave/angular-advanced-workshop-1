@@ -25,7 +25,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
           switchMap(params => this.store.select(selectBook(params.isbn))),
           filter((book): book is Book => !!book)
         )
-        .subscribe(book => (this.book = book))
+        .subscribe(book => (this.book = { ...book }))
     );
   }
 
