@@ -6,6 +6,7 @@ import { BookApiService } from '../book-api.service';
 import { Book } from '../models';
 import { Store } from '@ngrx/store';
 import { selectBook } from '../store/book-collection.selectors';
+import { deleteBookStart } from '../store/book-collection.actions';
 
 @Component({
   selector: 'ws-book-detail',
@@ -17,12 +18,7 @@ export class BookDetailComponent {
 
   public book$: Observable<Book>;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private bookService: BookApiService,
-    private store: Store
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store) {
     this.book$ = this.route.params.pipe(
       switchMap(params => this.store.select(selectBook(params.isbn))),
       filter((book): book is Book => !!book)
@@ -30,11 +26,6 @@ export class BookDetailComponent {
   }
 
   remove() {
-    this.route.params
-      .pipe(
-        exhaustMap(params => this.bookService.delete(params.isbn)),
-        tap(() => this.router.navigateByUrl('/'))
-      )
-      .subscribe();
+    this.store.dispatch(deleteBookStart({ isbn: this.route.snapshot.params['isbn'] }));
   }
 }

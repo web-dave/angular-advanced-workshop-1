@@ -1,6 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { BookCollectionSlice } from './book-collection.slice';
-import { createBookStart, loadBooksComplete } from './book-collection.actions';
+import {
+  createBookComplete,
+  loadBooksComplete,
+  updateBookComplete,
+  deleteBookComplete
+} from './book-collection.actions';
 
 const initialState: BookCollectionSlice = {
   entities: []
@@ -9,7 +14,7 @@ const initialState: BookCollectionSlice = {
 export const bookCollectionReducer = createReducer(
   initialState,
   on(
-    createBookStart,
+    createBookComplete,
     (state, action): BookCollectionSlice => ({
       ...state,
       entities: [...state.entities, action.book]
@@ -20,6 +25,20 @@ export const bookCollectionReducer = createReducer(
     (state, action): BookCollectionSlice => ({
       ...state,
       entities: action.books
+    })
+  ),
+  on(
+    updateBookComplete,
+    (state, action): BookCollectionSlice => ({
+      ...state,
+      entities: state.entities.map(book => (book.isbn !== action.book.isbn ? book : action.book))
+    })
+  ),
+  on(
+    deleteBookComplete,
+    (state, action): BookCollectionSlice => ({
+      ...state,
+      entities: state.entities.filter(book => book.isbn !== action.isbn)
     })
   )
 );
