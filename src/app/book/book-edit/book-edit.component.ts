@@ -22,7 +22,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     this.sink.add(
       this.route.params
         .pipe(
-          switchMap(params => this.store.select(selectBook(params.isbn))),
+          switchMap(params => this.store.select(selectBook)),
           filter((book): book is Book => !!book)
         )
         .subscribe(book => (this.book = { ...book }))
