@@ -10,5 +10,5 @@ export const createBookComplete = createAction('[Book] create Book Complete', pr
 export const updateBookStart = createAction('[Book] update Books Start', props<{ book: Book }>());
 export const updateBookComplete = createAction('[Book] update Books Complete', props<{ book: Book }>());
 
-export const deleteBookStart = createAction('[Book] delete Book Start', props<{ isbn: string }>());
+export const deleteBookStart = createAction('[Book] delete Book Start');
 export const deleteBookComplete = createAction('[Book] delete Book Complete', props<{ isbn: string }>());

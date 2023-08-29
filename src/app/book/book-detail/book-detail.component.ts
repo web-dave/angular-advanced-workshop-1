@@ -1,8 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { exhaustMap, filter, switchMap, tap } from 'rxjs/operators';
-import { BookApiService } from '../book-api.service';
+import { filter } from 'rxjs/operators';
 import { Book } from '../models';
 import { Store } from '@ngrx/store';
 import { selectBook } from '../store/book-collection.selectors';
@@ -18,14 +16,11 @@ export class BookDetailComponent {
 
   public book$: Observable<Book>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store) {
-    this.book$ = this.route.params.pipe(
-      switchMap(params => this.store.select(selectBook(params.isbn))),
-      filter((book): book is Book => !!book)
-    );
+  constructor(private store: Store) {
+    this.book$ = this.store.select(selectBook).pipe(filter((book): book is Book => !!book));
   }
 
   remove() {
-    this.store.dispatch(deleteBookStart({ isbn: this.route.snapshot.params['isbn'] }));
+    this.store.dispatch(deleteBookStart());
   }
 }
