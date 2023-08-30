@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { BookCollectionSlice } from './book-collection.slice';
 import {
   createBookComplete,
@@ -8,6 +8,7 @@ import {
 } from './book-collection.actions';
 import { Book } from '../models';
 import { createEntityAdapter } from '@ngrx/entity';
+import { BookState } from './book.feature';
 
 const bookAdapter = createEntityAdapter<Book>({ selectId: entity => entity.isbn });
 const { setAll, upsertOne, addOne, removeOne } = bookAdapter;

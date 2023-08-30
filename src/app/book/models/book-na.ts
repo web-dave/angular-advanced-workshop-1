@@ -6,11 +6,12 @@ export const bookNa: () => Book = () => {
   return {
     abstract: na,
     author: na,
-    cover: na,
+    cover: na + '.png',
     isbn: na,
     title: na,
     subtitle: na,
     numPages: 0,
-    publisher: { name: na, url: na }
+    publisher: { name: na, url: na },
+    id: na
   };
 };
