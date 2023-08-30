@@ -13,7 +13,7 @@ import { selectBooks } from '../store/book-collection.selectors';
 export class BookListComponent {
   books$: Observable<ReadonlyArray<Book>>;
   // <{ [bookFeatureName]: BookCollectionSlice }>
-  constructor(private bookData: BookApiService, private store: Store) {
+  constructor(private store: Store) {
     this.books$ = this.store.select(selectBooks);
   }
 }
